@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bookstore</title>
+  <title><%= @page_title ? @page_title : 'Welcome'%> | Seyed Books</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +11,30 @@
 </head>
 <body>
 <%= render 'layouts/header' %>
-<%= yield %>
+  <header>
+  <div class="container">
+    <h1>Seyed Books <small><%= @page_title ? @page_title : 'Welcome'%></small></h1>
+</div>
+  </header>
+  
+  <section>
+    <div class="container">
+       <div class="row">
+          <div class="col-md-8">
+      <%= yield %>
+           </div>  
+             <div class="col-md-4">
+               <%= render 'layouts/sidebar' %>
+         </div>
+      </div>
+    </div>
+  </section>
+  
+  <footer>
+    <div class="container">
+      <p>Copyright &copy; 2014, All Rights Reserved</p>     
+    </div>
+  </footer>
 
-</body>
+  </body>
 </html>
