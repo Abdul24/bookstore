@@ -54,7 +54,11 @@ Rails.application.routes.draw do
   get 'books/edit'
 
   get 'books/destroy'
-
+  
+  get 'about/index'
+  
+  get 'about' => "about#index"
+  
   root 'books#index'
   
   resources :books
