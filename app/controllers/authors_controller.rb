@@ -9,12 +9,15 @@ class AuthorsController < ApplicationController
     @page_title = 'Add New Author'
     @author = Author.new
   end
-
+  
   def create
-    @author = Author.new(author_params)
-    @author.save 
-    
-    redirect_to authors_path
+     @author = Author.new(author_params)
+    if @author.save  
+      flash[:notice] = "Author Created"
+      redirect_to authors_path
+    else
+      render 'new'
+    end
   end
 
   def update
