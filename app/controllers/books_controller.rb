@@ -6,11 +6,11 @@ class BooksController < ApplicationController
   end
 
   def new
-    @page_title = 'Add Book'
     @book       = Book.new
     @category   = Category.new
     @author     = Author.new
     @publisher  = Publisher.new
+    @page_title = 'Add New Book'
   end
 
   def create
@@ -24,4 +24,10 @@ class BooksController < ApplicationController
 
   def destroy
   end
+  
+  private
+    def book_params
+  params.require(:books).permit(:title, :category_id, :author_id, :publisher_id, :isbn, :price, :buy, :format, :excerpt, :pages, :year)
+    end
+
 end
