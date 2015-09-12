@@ -26,7 +26,7 @@ class BooksController < ApplicationController
   end
 
   def update
-    @book = Book.find(params[id])
+    @book = Book.find(params[:id])
     
     @book.update(book_params)
     
@@ -39,12 +39,17 @@ class BooksController < ApplicationController
   end
 
   def destroy
+    @book = Book.find(params[:id])
+
+    @book.destroy
+
+    flash[:notice] = 'Book Deleted'
+    redirect_to books_path
   end
-  
+
   private
     def book_params
   params.require(:book).permit(:title, :category_id, :author_id, :publisher_id, :isbn, :price, :buy, :format, :excerpt, :pages, :year, :coverpath)
     end
-  
 
 end
