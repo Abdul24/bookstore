@@ -5,8 +5,8 @@ class CategoriesController < ApplicationController
 
   def show
    @category = Category.find(params[:id])
-    @categories = Category.all
-    @books =  @category.books
+   @categories = Category.all
+   @books =  @category.books
   end
 
   def new
@@ -24,13 +24,27 @@ class CategoriesController < ApplicationController
     end
   end
 
-  def update
+ def update
+    @category = Category.find(params[:id])
+    
+   @category.update(category_params)
+    
+    flash[:notice] = 'Updated Added'
+    redirect_to categories_path
   end
 
   def edit
+    @category = Category.find(params[:id])
   end
 
+
   def destroy
+    @category = Category.find(params[:id])
+
+    @category.destroy
+
+    flash[:notice] = 'Category Deleted'
+    redirect_to categories_path
   end
  
   private 
